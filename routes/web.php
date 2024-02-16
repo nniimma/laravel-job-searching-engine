@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +20,6 @@ Route::get('/directreturn', function () {
 });
 
 Route::get('/', function () {
-    return view('listings');
+    $listings = Listing::all();
+    return view('listings', ['listings' => $listings]);
 });
