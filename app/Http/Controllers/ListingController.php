@@ -11,9 +11,9 @@ class ListingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $listings = Listing::all();
+        $listings = Listing::latest()->filter(request(['tag']))->get();
         return view('listings.index', ['listings' => $listings]);
     }
 
