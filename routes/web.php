@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
@@ -19,11 +20,5 @@ Route::get('/directreturn', function () {
     return response("<h1>Hello, this is a direct returning!</h1>", 200)->header('Hello', 'This is a header that I created!');
 });
 
-Route::get('/', function () {
-    $listings = Listing::all();
-    return view('listings', ['listings' => $listings]);
-})->name('listings.index');
-
-Route::get('listing/{listing}', function (Listing $listing) {
-    return view('listing', ['listing' => $listing]);
-})->name('listings.show');
+Route::get('/', [ListingController::class, 'index'])->name('listings.index');
+Route::resource('/listings', ListingController::class);
