@@ -1,7 +1,7 @@
 {{-- to access to listing we use props()  --}}
 @props(['listing'])
 
-<div class="bg-gray-50 border border-gray-200 rounded p-6">
+<x-card>
     <div class="flex">
         <img class="hidden w-48 mr-6 md:block" src="{{ URL::asset('images/no-image.png') }}" alt="" />
         <div>
@@ -29,4 +29,4 @@
             </div>
         </div>
     </div>
-</div>
+</x-card>
