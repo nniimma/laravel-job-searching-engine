@@ -22,4 +22,8 @@ Route::get('/directreturn', function () {
 Route::get('/', function () {
     $listings = Listing::all();
     return view('listings', ['listings' => $listings]);
-});
+})->name('listings.index');
+
+Route::get('listing/{listing}', function (Listing $listing) {
+    return view('listing', ['listing' => $listing]);
+})->name('listings.show');
