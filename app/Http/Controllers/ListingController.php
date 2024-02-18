@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\List_;
+
+use function Laravel\Prompts\search;
 
 class ListingController extends Controller
 {
@@ -13,7 +14,7 @@ class ListingController extends Controller
      */
     public function index(Request $request)
     {
-        $listings = Listing::latest()->filter(request(['tag']))->get();
+        $listings = Listing::latest()->filter(request(['tag', 'search']))->get();
         return view('listings.index', ['listings' => $listings]);
     }
 
