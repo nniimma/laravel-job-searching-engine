@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // ! if we want to get rid of fillable we can do this:
+        // ! it allows mass assignment
+        // todo: Model::unguard();
     }
 }
