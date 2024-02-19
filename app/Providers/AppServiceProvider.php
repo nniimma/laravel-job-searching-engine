@@ -22,5 +22,8 @@ class AppServiceProvider extends ServiceProvider
         // ! if we want to get rid of fillable we can do this:
         // ! it allows mass assignment
         // todo: Model::unguard();
+
+        // ! to change the framework of paginator:
+        // todo: Paginator::useBootstrapFive();
     }
 }

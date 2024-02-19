@@ -15,7 +15,8 @@ class ListingController extends Controller
      */
     public function index(Request $request)
     {
-        $listings = Listing::latest()->filter(request(['tag', 'search']))->get();
+        // ! we can use singlePaginate instead of the paginate as well:
+        $listings = Listing::latest()->filter(request(['tag', 'search']))->paginate(6);
         return view('listings.index', ['listings' => $listings]);
     }
 
