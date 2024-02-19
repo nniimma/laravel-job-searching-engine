@@ -35,7 +35,7 @@ class ListingController extends Controller
         $validated = $request->validated();
 
         Listing::create($validated);
-        return redirect()->route('listings.index');
+        return redirect()->route('listings.index')->with('message', 'listing created successfully!');
     }
 
     /**
