@@ -35,6 +35,10 @@ class ListingController extends Controller
     {
         $validated = $request->validated();
 
+        if ($request->hasFile('logo')) {
+            $validated['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
         Listing::create($validated);
         return redirect()->route('listings.index')->with('message', 'listing created successfully!');
     }
