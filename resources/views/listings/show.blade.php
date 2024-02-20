@@ -46,8 +46,14 @@
 
         <x-card class="mt-4 p-2 flex space-x-6">
             <a href="{{ route('listings.edit', $listing->id) }}">
-                <div class="fa-solid fa-pencil">edit</div>
+                <i class="fa-solid fa-pencil">Edit</i>
             </a>
+
+            <form action="{{ route('listings.destroy', $listing->id) }}" method="POST">
+                @csrf
+                @method('delete')
+                <button class="text-red-500"><i class="fa-solid fa-trash">Delete</i></button>
+            </form>
         </x-card>
     </div>
 </x-layout>
