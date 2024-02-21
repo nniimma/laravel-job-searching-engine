@@ -27,5 +27,6 @@ Route::resource('/listings', ListingController::class);
 Route::get('/register', [UserController::class, 'create'])->name('register.create');
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
-Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::get('/login', [UserController::class, 'showLogin'])->name('login.create');
+Route::post('/login', [UserController::class, 'postLogin'])->name('login.store');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
