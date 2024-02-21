@@ -23,4 +23,14 @@ class UserController extends Controller
 
         return redirect()->route('listings.index')->with('message', 'User created and logged in.');
     }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('listings.index')->with('message', 'You have been logged out.');
+    }
 }

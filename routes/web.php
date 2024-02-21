@@ -21,9 +21,11 @@ Route::get('/directreturn', function () {
 });
 
 Route::get('/', [ListingController::class, 'index'])->name('listings.index');
+Route::get('/listings/manage', [ListingController::class, 'index'])->name('listings.manage');
 Route::resource('/listings', ListingController::class);
 
 Route::get('/register', [UserController::class, 'create'])->name('register.create');
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
-Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
