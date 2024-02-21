@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
-use App\Models\Listing;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +22,8 @@ Route::get('/directreturn', function () {
 
 Route::get('/', [ListingController::class, 'index'])->name('listings.index');
 Route::resource('/listings', ListingController::class);
+
+Route::get('/register', [UserController::class, 'create'])->name('register.create');
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
+Route::get('/login', [UserController::class, 'login'])->name('login');
