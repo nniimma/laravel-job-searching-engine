@@ -20,11 +20,11 @@ Route::get('/directreturn', function () {
     return response("<h1>Hello, this is a direct returning!</h1>", 200)->header('Hello', 'This is a header that I created!');
 });
 
+Route::get('/listings/manage', [ListingController::class, 'manage'])->name('listings.manage')->middleware('auth');
+
 Route::get('/', [ListingController::class, 'index'])->name('listings.index');
 Route::resource('/listings', ListingController::class);
 Route::resource('/listings', ListingController::class)->only(['destroy', 'create', 'store', 'edit', 'update'])->middleware('auth');
-
-Route::get('/listings/manage', [ListingController::class, 'index'])->name('listings.manage');
 
 Route::get('/register', [UserController::class, 'create'])->name('register.create')->middleware('guest');
 Route::post('/register', [UserController::class, 'store'])->name('register.store')->middleware('guest');
