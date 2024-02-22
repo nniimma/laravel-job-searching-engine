@@ -35,4 +35,11 @@ class Listing extends Model
                 ->orWhere('tags', 'like', '%' . request('search') . '%');
         }
     }
+
+    // ! relationship to user
+    // ! by default it is user_id, so we dont need to mention that by if the name of the foreign key is different than tableName_id, we need to mention that
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
