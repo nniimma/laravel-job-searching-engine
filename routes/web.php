@@ -21,12 +21,14 @@ Route::get('/directreturn', function () {
 });
 
 Route::get('/', [ListingController::class, 'index'])->name('listings.index');
-Route::get('/listings/manage', [ListingController::class, 'index'])->name('listings.manage');
 Route::resource('/listings', ListingController::class);
+Route::resource('/listings', ListingController::class)->only(['destroy', 'create', 'store', 'edit', 'update'])->middleware('auth');
 
-Route::get('/register', [UserController::class, 'create'])->name('register.create');
-Route::post('/register', [UserController::class, 'store'])->name('register.store');
+Route::get('/listings/manage', [ListingController::class, 'index'])->name('listings.manage');
 
-Route::get('/login', [UserController::class, 'showLogin'])->name('login.create');
-Route::post('/login', [UserController::class, 'postLogin'])->name('login.store');
-Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/register', [UserController::class, 'create'])->name('register.create')->middleware('guest');
+Route::post('/register', [UserController::class, 'store'])->name('register.store')->middleware('guest');
+
+Route::get('/login', [UserController::class, 'showLogin'])->name('login.create')->middleware('guest');
+Route::post('/login', [UserController::class, 'postLogin'])->name('login')->middleware('guest');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');

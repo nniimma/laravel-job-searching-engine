@@ -8,7 +8,7 @@
             <p class="mb-4">Log into your account</p>
         </header>
 
-        <form action="{{ route('login.store') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="mb-6">
                 <label for="email" class="inline-block text-lg mb-2">Email</label>
