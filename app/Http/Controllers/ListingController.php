@@ -67,6 +67,12 @@ class ListingController extends Controller
      */
     public function update(UpdateListingRequest $request, Listing $listing)
     {
+
+        // ! make sure logged in user is owner:
+        if ($listing->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+
         $validated = $request->validated();
 
         if ($request->hasFile('logo')) {
@@ -82,6 +88,12 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
+
+        // ! make sure logged in user is owner:
+        if ($listing->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+
         $listing->delete();
         return redirect()->route('listings.index')->with('message', 'Listing deleted successfully.');
     }
